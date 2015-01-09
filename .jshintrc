@@ -1,0 +1,8 @@
+{
+  "esnext": true,
+  "noyield": true,
+  "node": true,
+  "unused": true,
+  "strict": true,
+  "curly": true
+}
