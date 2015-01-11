@@ -35,12 +35,19 @@
     "co-mocha": "^1.1.0",
     "co-supertest": "0.0.7",
     "gulp": "^3.8.10",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat": "^2.4.3",
+    "gulp-imagemin": "^2.1.0",
     "gulp-jshint": "^1.9.0",
-    "gulp-spawn-mocha": "^0.5.1",
+    "gulp-less": "^2.0.1",
+    "gulp-spawn-mocha": "^0.5.2",
+    "gulp-uglify": "^1.0.2",
     "jshint-stylish": "^1.0.0",
+    "main-bower-files": "^2.4.1",
     "mocha": "^2.0.1",
     "monk": "^0.9.1",
     "should": "^4.3.0",
-    "supertest": "^0.15.0"
+    "supertest": "^0.15.0",
+    "wiredep": "^2.2.2"
   }
 }

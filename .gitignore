@@ -30,3 +30,6 @@ node_modules
 .idea
 .env
 apidoc
+
+public/app/components/
+public/dist

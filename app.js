@@ -50,6 +50,6 @@ app.use(router(app));
 // add REST resources here
 
 // static content
-app.use(serve(__dirname + '/public'));
+app.use(serve(__dirname + '/public/dist'));
 
 module.exports = app;
