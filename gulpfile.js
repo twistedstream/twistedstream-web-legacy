@@ -11,32 +11,10 @@ var imagemin = require('gulp-imagemin');
 var bowerFiles = require('main-bower-files');
 var wiredep = require('wiredep').stream;
 var less = require('gulp-less');
+var nodemon = require('gulp-nodemon');
+var gutil = require('gulp-util');
 
-// BACKEND
-
-// jshint
-gulp.task('jshint', function () {
-	return gulp.src(['**/*.js', '!node_modules/**/*.js', '!' + bases.app + '/**/*.js', '!' + bases.dist + '/**/*.js'])
-		.pipe(jshint({node: true}))
-		.pipe(jshint.reporter(stylish))
-		.pipe(jshint.reporter('fail'));
-});
-
-// run tests
-gulp.task('backend-tests', function () {
-	return gulp.src(['test/**/test-*.js'], {read: false})
-		.pipe(mocha({
-			harmony: true,
-			reporter: 'spec',
-			ui: 'bdd',
-			timeout: 2000,
-			env: { }
-		}));
-});
-
-gulp.task('backend', ['jshint', 'backend-tests']);
-
-// FRONTEND
+// PATHS
 
 var bases = {
 	app: 'public/app/',
@@ -52,37 +30,82 @@ var paths = {
 	extras: ['crossdomain.xml', 'humans.txt', 'manifest.appcache', 'robots.txt', 'favicon.ico'],
 };
 
-// delete the dist directory
-gulp.task('clean', function() {
-	return gulp.src(bases.dist)
-		.pipe(clean());
+// BACKEND
+
+// jshint
+gulp.task('jshint', function() {
+	return gulp.src(['**/*.js', '!node_modules/**/*.js', '!' + bases.app + '/**/*.js', '!' + bases.dist + '/**/*.js'])
+		.pipe(jshint({node: true}))
+		.pipe(jshint.reporter(stylish))
+		.pipe(jshint.reporter('fail'));
+});
+
+// run tests
+gulp.task('backend-tests', function() {
+	return gulp.src(['test/**/test-*.js'], {read: false})
+		.pipe(mocha({
+			harmony: true,
+			reporter: 'spec',
+			ui: 'bdd',
+			timeout: 2000,
+			env: { }
+		}));
+});
+
+gulp.task('backend', ['jshint', 'backend-tests']);
+
+// FRONTEND
+
+// delete the dist directory, but only once
+var isClean = false;
+gulp.task('clean', function (cb) {
+	if (isClean) {
+		gutil.log('dist has already been cleaned.');
+		cb();
+	} else {
+		var stream = gulp.src(bases.dist)
+			.pipe(clean());
+
+		stream.on('end', function () {
+			isClean = true;
+			gutil.log('dist is clean!');
+		});
+
+		return stream;
+	}
 });
 
 // process frontend scripts and concatenate them into one output file
 gulp.task('scripts', ['clean'], function() {
-	return gulp.src(paths.scripts, {cwd: bases.app})
+	var stream = gulp.src(paths.scripts, {cwd: bases.app})
 		// frontend jshint
 		.pipe(jshint({
 			browser: true,
 			jquery: true,
 			reporter: 'spec',
 			ui: 'bdd'
-		}))
-		.pipe(uglify())
+		}));
+
+	// don't uglify if in dev mode so client-side debugging is easier
+	if (!isDev) {
+		stream = stream.pipe(uglify());
+	}
+
+	return stream
 		.pipe(concat('app.min.js'))
 		.pipe(gulp.dest(bases.dist + 'scripts/'));
 });
 
 // minimize images
 gulp.task('imagemin', ['clean'], function() {
-	return gulp.src(paths.images, {cwd: bases.app})
-		.pipe(imagemin())
-		.pipe(gulp.dest(bases.dist + 'images/'));
-});
+	var stream = gulp.src(paths.images, {cwd: bases.app});
 
-// non-minified image copy
-gulp.task('imagecopy', ['clean'], function() {
-	return gulp.src(paths.images, {cwd: bases.app})
+	// don't minimize images if in dev mode
+	if (!isDev) {
+		stream = stream.pipe(imagemin());
+	}
+
+	return stream
 		.pipe(gulp.dest(bases.dist + 'images/'));
 });
 
@@ -112,8 +135,11 @@ gulp.task('extras', ['clean'], function() {
 		.pipe(gulp.dest(bases.dist));
 });
 
+// run all frontend build tasks
+gulp.task('build', ['scripts', 'imagemin', 'less', 'deps', 'extras']);
+
 // run tests
-gulp.task('frontend-tests', function () {
+gulp.task('frontend-tests', ['build'], function () {
 	return gulp.src(['test/**/test-*.js'], {cwd: bases.app, read: false})
 		.pipe(mocha({
 			reporter: 'spec',
@@ -121,7 +147,33 @@ gulp.task('frontend-tests', function () {
 		}));
 });
 
-gulp.task('frontend', ['scripts', 'imagemin', 'less', 'deps', 'extras', 'frontend-tests']);
+gulp.task('frontend', ['build', 'frontend-tests']);
 
 // ALL TOGETHER NOW
 gulp.task('default', ['backend', 'frontend']);
+
+// DEVELOPMENT
+var isDev = false;
+
+gulp.task('dev-variables', function () {
+	isDev = true;
+});
+
+// changes to source should trigger associated build tasks
+// which will in turn cause dist to change and the dev web server to reload
+gulp.task('watch', ['dev-variables', 'frontend'], function (cb) {
+	gulp.watch([bases.app + 'index.html', bases.app + 'components'], ['deps']);
+	gulp.watch(bases.app + 'images', ['imagemin']);
+	gulp.watch(bases.app + 'scripts', ['scripts']);
+	gulp.watch(bases.app + 'styles.less', ['less']);
+	gulp.watch(paths.extras.map(function (extra) {
+		return bases.app + extra;
+	}), ['extras']);
+
+	cb();
+});
+
+// start a web server that serves up the backend AND restarts on any changes, including frontend
+gulp.task('dev', ['watch'], function () {
+	return nodemon({ignore: [bases.app], nodeArgs: '--harmony'});
+})
