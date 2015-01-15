@@ -176,4 +176,4 @@ gulp.task('watch', ['dev-variables', 'frontend'], function (cb) {
 // start a web server that serves up the backend AND restarts on any changes, including frontend
 gulp.task('dev', ['watch'], function () {
 	return nodemon({ignore: [bases.app], nodeArgs: '--harmony'});
-})
+});
