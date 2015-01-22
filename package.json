@@ -34,8 +34,8 @@
     "chai": "^1.10.0",
     "co-mocha": "^1.1.0",
     "co-supertest": "0.0.7",
+    "del": "^1.1.1",
     "gulp": "^3.8.10",
-    "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.4.3",
     "gulp-imagemin": "^2.1.0",
     "gulp-jshint": "^1.9.0",
@@ -50,6 +50,7 @@
     "monk": "^0.9.1",
     "should": "^4.3.0",
     "supertest": "^0.15.0",
+    "vinyl-paths": "^1.0.0",
     "wiredep": "^2.2.2"
   }
 }

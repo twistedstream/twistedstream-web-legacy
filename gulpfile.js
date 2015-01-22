@@ -4,7 +4,8 @@ var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 var mocha = require('gulp-spawn-mocha');
-var clean = require('gulp-clean');
+var vinylPaths = require('vinyl-paths');
+var del = require('del');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var imagemin = require('gulp-imagemin');
@@ -64,7 +65,7 @@ gulp.task('clean', function (cb) {
 		cb();
 	} else {
 		var stream = gulp.src(bases.dist)
-			.pipe(clean());
+			.pipe(vinylPaths(del));
 
 		stream.on('end', function () {
 			isClean = true;
