@@ -28,7 +28,7 @@ bower install
 gulp dev
 ```
 
-The app can then be accessed at: http://localhost:5000/
+The app can then be accessed at: [http://localhost:5000/](http://localhost:5000/)
 
 To execute the app in a local Docker container (running in [boot2docker](http://boot2docker.io/)):
 
