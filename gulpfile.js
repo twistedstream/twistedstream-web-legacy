@@ -14,6 +14,7 @@ var wiredep = require('wiredep').stream;
 var less = require('gulp-less');
 var nodemon = require('gulp-nodemon');
 var gutil = require('gulp-util');
+var dotenv = require('dotenv');
 
 // PATHS
 
@@ -178,7 +179,7 @@ gulp.task('dev-variables', function () {
 
 // changes to source should trigger associated build tasks
 // which will in turn cause dist to change and the dev web server to reload
-gulp.task('watch', ['dev-variables', 'frontend'], function (cb) {
+gulp.task('watch', ['dev-variables', 'backend', 'frontend'], function (cb) {
 	gulp.watch([bases.app + 'index.html', bases.app + 'components'], ['deps']);
 	gulp.watch(bases.app + 'images', ['imagemin']);
 	gulp.watch(bases.app + 'scripts', ['scripts']);
@@ -192,5 +193,11 @@ gulp.task('watch', ['dev-variables', 'frontend'], function (cb) {
 
 // start a web server that serves up the backend AND restarts on any changes, including frontend
 gulp.task('dev', ['watch'], function () {
-	return nodemon({ignore: [bases.app], nodeArgs: '--harmony'});
+	// load a local .env file into environment variables
+	dotenv.load();
+
+	return nodemon({
+		ignore: ['node_modules'],
+		nodeArgs: '--harmony'
+	}).on('change', ['backend']);
 });
