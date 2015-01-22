@@ -38,7 +38,13 @@ gulp.task('jshint', function() {
 	return gulp.src(['**/*.js', '!node_modules/**/*.js', '!' + bases.app + '/**/*.js', '!' + bases.dist + '/**/*.js'])
 		.pipe(jshint({node: true}))
 		.pipe(jshint.reporter(stylish))
-		.pipe(jshint.reporter('fail'));
+		.pipe(jshint.reporter('fail'))
+		.on('error', function () {
+			// ignore error if in dev mode so gulp keeps running
+			if (isDev) {
+				this.emit('end');
+			}
+		});
 });
 
 // run tests
@@ -50,7 +56,12 @@ gulp.task('backend-tests', function() {
 			ui: 'bdd',
 			timeout: 2000,
 			env: { }
-		}));
+		})).on('error', function () {
+			// ignore error if in dev mode so gulp keeps running
+			if (isDev) {
+				this.emit('end');
+			}
+		});
 });
 
 gulp.task('backend', ['jshint', 'backend-tests']);
@@ -145,7 +156,12 @@ gulp.task('frontend-tests', ['build'], function () {
 		.pipe(mocha({
 			reporter: 'spec',
 			ui: 'bdd'
-		}));
+		})).on('error', function () {
+			// ignore error if in dev mode so we can keep watching
+			if (isDev) {
+				this.emit('end');
+			}
+		});
 });
 
 gulp.task('frontend', ['build', 'frontend-tests']);
