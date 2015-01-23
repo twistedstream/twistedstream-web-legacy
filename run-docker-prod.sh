@@ -1,3 +1,6 @@
+# build image
+docker build -t="app" .
+
 # stop and remove any existing containers
 RUNNING_CONTAINERS=$(docker ps -a -q)
 if [[ $RUNNING_CONTAINERS ]]; then
@@ -5,8 +8,5 @@ if [[ $RUNNING_CONTAINERS ]]; then
   docker rm $RUNNING_CONTAINERS
 fi
 
-# build image
-docker build -t="app" .
-
-# run the container from the image
-docker run -d -p 8080:80 app
+# run the container from the new image
+docker run -d -p 8080 app
