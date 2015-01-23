@@ -9,4 +9,4 @@ if [[ $RUNNING_CONTAINERS ]]; then
 fi
 
 # run the container from the new image
-docker run -d -p 8080 app
+docker run -d -p 80:8080 app
