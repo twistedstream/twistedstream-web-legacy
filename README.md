@@ -6,10 +6,10 @@ The source code for [twistedstream.com](http://www.twistedstream.com).
 
 This web app demonstrates the use of:
 
-* Node v0.11 and [ES6 generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*)
-* [Koa.js](http://koajs.com/) as the backend
+* [Koa.js](http://koajs.com/) on Node v.0.11 in the backend
+* [jQuery](http://jquery.com/), [Twitter Bootstrap](https://github.com/twbs/bootstrap), and [Bower](http://bower.io/) in the frontend
+* [ES6 generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*)
 * [Mocha](http://mochajs.org/) as the test runner
-* [Twitter Bootstrap](https://github.com/twbs/bootstrap) and [Bower](http://bower.io/) in the frontend
 * [Gulp](http://gulpjs.com/) as the build engine
 * [Nodemon](https://github.com/remy/nodemon) as the local dev server
 * [Docker](https://www.docker.com/) to run the app in a container
