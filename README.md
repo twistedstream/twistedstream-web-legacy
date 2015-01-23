@@ -42,5 +42,5 @@ boot2docker start
 $(boot2docker shellinit)
 
 # build the image, run the container, and launch a browser
-sh run-docker.sh
+sh run-docker-dev.sh
 ```
