@@ -46,8 +46,7 @@ app.use(bodyParser());
 
 // routes
 app.use(router(app));
-
-// add REST resources here
+require('./resources/root')(app);
 
 // static content
 app.use(serve(__dirname + '/public/dist'));
