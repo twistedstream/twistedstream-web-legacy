@@ -1,5 +1,8 @@
+#!/bin/sh
+set -e
+
 # build image
-docker build -t="app" .
+docker build -t="app" --force-rm .
 
 # stop and remove any existing containers
 RUNNING_CONTAINERS=$(docker ps -a -q)

@@ -1,7 +1,10 @@
+#!/bin/sh
+set -e
+
 # NOTE: This shell script runs on a Mac with boot2docker installed and running
 
 # build the image
-docker build -t="app" .
+docker build -t="app" --force-rm .
 
 # run the container from the image
 CONT_ID=$(docker run -d -p 8080 -e "JWT_SECRET=$JWT_SECRET" app)
