@@ -1,6 +1,9 @@
 #!/bin/sh
 set -e
 
+# usage:
+# sh run-docker-prod.sh JWT_SECRET SANDBOX_TIMEOUT
+
 # build image
 docker build -t="app" --force-rm .
 
@@ -12,4 +15,4 @@ if [[ $RUNNING_CONTAINERS ]]; then
 fi
 
 # run the container from the new image with the passed config data
-docker run -d -p 80:8080 -e "JWT_SECRET=$1" app
+docker run -d -p 80:8080 -e "JWT_SECRET=$1" -e "SANDBOX_TIMEOUT=$2" app

@@ -4,7 +4,7 @@ var assert = require('http-assert');
 var jws = require('jws');
 var code = require('../lib/evaluator');
 
-require('assert')(process.env.JWT_SECRET, 'Missing required environment variable.');
+require('assert')(process.env.JWT_SECRET, 'Missing required environment variable: JWT_SECRET');
 
 module.exports = function (app) {
   app.post('/api/question', function *() {

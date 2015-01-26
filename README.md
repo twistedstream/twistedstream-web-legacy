@@ -41,6 +41,6 @@ boot2docker start
 # if the shell hasn't been initialized
 $(boot2docker shellinit)
 
-# build the image, run the container (with any JWT secret), and launch a browser
-sh run-docker-dev.sh my-jwt-secret
+# build the image, run the container (with configuration), and launch a browser
+sh run-docker-dev.sh my-jwt-secret 1000
 ```
