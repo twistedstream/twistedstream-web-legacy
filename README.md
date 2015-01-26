@@ -9,6 +9,7 @@ This web app demonstrates the use of:
 * [Koa.js](http://koajs.com/) on Node v.0.11 in the backend
 * [jQuery](http://jquery.com/), [Twitter Bootstrap](https://github.com/twbs/bootstrap), and [Bower](http://bower.io/) in the frontend
 * [ES6 generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*)
+* [ES6 Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 * [Mocha](http://mochajs.org/) as the test runner
 * [Gulp](http://gulpjs.com/) as the build engine
 * [Nodemon](https://github.com/remy/nodemon) as the local dev server
