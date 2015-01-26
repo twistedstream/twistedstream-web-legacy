@@ -30,7 +30,7 @@
     "koa-logger": "^1.2.2",
     "koa-router": "^3.6.0",
     "koa-static": "^1.4.8",
-    "sandbox": "^0.8.6"
+    "sandbox": "https://github.com/twistedstream/sandbox/archive/v0.8.7.tar.gz"
   },
   "devDependencies": {
     "chai": "^1.10.0",
