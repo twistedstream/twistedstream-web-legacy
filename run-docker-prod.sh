@@ -11,5 +11,5 @@ if [[ $RUNNING_CONTAINERS ]]; then
   docker rm $RUNNING_CONTAINERS
 fi
 
-# run the container from the new image
-docker run -d -p 80:8080 -e "JWT_SECRET=$JWT_SECRET" app
+# run the container from the new image with the passed config data
+docker run -d -p 80:8080 -e "JWT_SECRET=$1" app

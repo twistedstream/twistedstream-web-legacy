@@ -6,8 +6,8 @@ set -e
 # build the image
 docker build -t="app" --force-rm .
 
-# run the container from the image
-CONT_ID=$(docker run -d -p 8080 -e "JWT_SECRET=$JWT_SECRET" app)
+# run the container from the image with the passed config data
+CONT_ID=$(docker run -d -p 8080 -e "JWT_SECRET=$1" app)
 
 # get the boot2docker IP and port and launch a browser
 VM_IP=$(boot2docker ip)
