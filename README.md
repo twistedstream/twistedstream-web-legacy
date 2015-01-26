@@ -41,6 +41,9 @@ boot2docker start
 # if the shell hasn't been initialized
 $(boot2docker shellinit)
 
+# export this required variable with any value you want
+export JWT_SECRET=anything-you-want
+
 # build the image, run the container, and launch a browser
 sh run-docker-dev.sh
 ```

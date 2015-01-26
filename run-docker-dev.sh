@@ -4,7 +4,7 @@
 docker build -t="app" .
 
 # run the container from the image
-CONT_ID=$(docker run -d -p 8080 app)
+CONT_ID=$(docker run -d -p 8080 -e "JWT_SECRET=$JWT_SECRET" app)
 
 # get the boot2docker IP and port and launch a browser
 VM_IP=$(boot2docker ip)

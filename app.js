@@ -47,6 +47,7 @@ app.use(bodyParser());
 // routes
 app.use(router(app));
 require('./resources/root')(app);
+require('./resources/question')(app);
 
 // static content
 app.use(serve(__dirname + '/public/dist'));

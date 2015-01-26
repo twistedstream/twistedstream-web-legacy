@@ -56,7 +56,9 @@ gulp.task('backend-tests', function() {
 			reporter: 'spec',
 			ui: 'bdd',
 			timeout: 2000,
-			env: { }
+			env: {
+				JWT_SECRET: 'I am a fake mountain.'
+			}
 		})).on('error', function () {
 			// ignore error if in dev mode so gulp keeps running
 			if (isDev) {
