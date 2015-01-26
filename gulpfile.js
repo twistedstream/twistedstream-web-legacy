@@ -174,6 +174,9 @@ gulp.task('default', ['backend', 'frontend']);
 var isDev = false;
 
 gulp.task('dev-variables', function () {
+	// load a local .env file into environment variables
+	dotenv.load();
+
 	isDev = true;
 });
 
@@ -193,9 +196,6 @@ gulp.task('watch', ['dev-variables', 'backend', 'frontend'], function (cb) {
 
 // start a web server that serves up the backend AND restarts on any changes, including frontend
 gulp.task('dev', ['watch'], function () {
-	// load a local .env file into environment variables
-	dotenv.load();
-
 	return nodemon({
 		ignore: ['node_modules'],
 		nodeArgs: '--harmony'
