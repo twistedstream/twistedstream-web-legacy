@@ -1,7 +1,7 @@
 'use strict';
 
 var assert = require('http-assert');
-var jws = require('jws');
+var jwt = require('jsonwebtoken');
 var code = require('../lib/evaluator');
 
 require('assert')(process.env.JWT_SECRET, 'Missing required environment variable: JWT_SECRET');
@@ -16,11 +16,13 @@ module.exports = function (app) {
       this.status = 200;
 
       this.body = {
-        access_token: jws.sign({
-          header: { alg: 'HS256' },
-          payload: 'I got in!',
-          secret: process.env.JWT_SECRET,
-        })
+        access_token: jwt.sign({
+            message: 'I got in!'
+          },
+          process.env.JWT_SECRET, {
+            expiresInMinutes: 60,
+            subject: 'flynn'
+          })
       };
     } else {
       this.status = 400;

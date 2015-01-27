@@ -2,7 +2,7 @@
 /* jshint expr: true */
 'use strict';
 
-var jws = require('jws');
+var jwt = require('jsonwebtoken');
 var app = require('../../app');
 var expect = require('chai').expect;
 require('co-mocha');
@@ -48,6 +48,7 @@ describe("API Question (/question) resource", function () {
 
     var body = response.body;
     expect(body).to.have.property('access_token');
-    expect(jws.verify(body.access_token, process.env.JWT_SECRET)).to.be.true;
+    expect(jwt.verify(body.access_token, process.env.JWT_SECRET))
+      .to.have.property('message', 'I got in!');
   });
 });
