@@ -15,4 +15,4 @@ if [[ $RUNNING_CONTAINERS ]]; then
 fi
 
 # run the container from the new image with the passed config data
-docker run -d -p 80:8080 -e "JWT_SECRET=$1" -e "SANDBOX_TIMEOUT=$2" app
+docker run -d -p 80:8080 -e "JWT_SECRET=$1" -e "SANDBOX_TIMEOUT=$2" -e "GOOGLE_DOCS_RESUME_BASE_EXPORT_URL=$3" app

@@ -43,5 +43,5 @@ boot2docker start
 $(boot2docker shellinit)
 
 # build the image, run the container (with configuration), and launch a browser
-sh run-docker-dev.sh my-jwt-secret 1000
+sh run-docker-dev.sh my-jwt-secret 1000 http://any-url-that-returns-a-pdf.com
 ```
