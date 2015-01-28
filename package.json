@@ -22,7 +22,6 @@
   "homepage": "http://www.twistedstream.com",
   "dependencies": {
     "co-body": "^1.0.0",
-    "co-request": "^0.2.0",
     "http-assert": "^1.1.0",
     "jsonwebtoken": "^3.2.2",
     "koa": "^0.13.0",
@@ -30,6 +29,7 @@
     "koa-logger": "^1.2.2",
     "koa-router": "^3.6.0",
     "koa-static": "^1.4.8",
+    "request": "^2.51.0",
     "sandbox": "https://github.com/twistedstream/sandbox/archive/v0.8.7.tar.gz"
   },
   "devDependencies": {
@@ -51,6 +51,7 @@
     "main-bower-files": "^2.4.1",
     "mocha": "^2.0.1",
     "monk": "^0.9.1",
+    "nock": "^0.58.0",
     "should": "^4.3.0",
     "supertest": "^0.15.0",
     "vinyl-paths": "^1.0.0",

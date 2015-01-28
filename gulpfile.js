@@ -58,7 +58,9 @@ gulp.task('backend-tests', function() {
 			timeout: 2000,
 			env: {
 				JWT_SECRET: 'I am a fake mountain.',
-				SANDBOX_TIMEOUT: 1000
+				SANDBOX_TIMEOUT: 1000,
+				GOOGLE_DOCS_RESUME_BASE_EXPORT_URL: 'http://resume.url/?id=foo',
+				STACK_OVERFLOW_CAREERS_URL: 'http://stack.overflow.careers.url'
 			}
 		})).on('error', function () {
 			// ignore error if in dev mode so gulp keeps running
