@@ -1,14 +1,15 @@
 'use strict';
 
-var assert = require('http-assert');
+var assert = require('assert');
+var httpAssert = require('http-assert');
 var jwt = require('jsonwebtoken');
 var code = require('../lib/evaluator');
 
-require('assert')(process.env.JWT_SECRET, 'Missing required environment variable: JWT_SECRET');
+assert(process.env.JWT_SECRET, 'Missing required environment variable: JWT_SECRET');
 
 module.exports = function (app) {
   app.post('/api/question', function *() {
-    assert(this.request.body.code, 400, 'Missing required field: code');
+    httpAssert(this.request.body.code, 400, 'Missing required field: code');
 
     var result = yield code.test(this.request.body.code);
 
