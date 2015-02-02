@@ -1,9 +1,8 @@
 'use strict';
 
 var assert = require('assert');
-var httpAssert = require('http-assert');
-var jwt = require('jsonwebtoken');
 var request = require('request');
+var secure = require('../lib/secure');
 
 assert(process.env.GOOGLE_DOCS_RESUME_BASE_EXPORT_URL, 'Missing required environment variable: GOOGLE_DOCS_RESUME_BASE_EXPORT_URL');
 assert(process.env.JWT_SECRET, 'Missing required environment variable: JWT_SECRET');
@@ -29,21 +28,8 @@ var FORMATS = {
 
 module.exports = function (app) {
   app.get('/api/personal_resume', function *() {
-    // authorize this request
-    var authHeader = this.header.authorization;
-    httpAssert(authHeader, 401, 'Missing Authorization request header');
-
-    var match = authHeader.match(/^Bearer (.*)$/);
-    httpAssert(match, 401, 'Authorization request header is not formatted correctly');
-
-    var accessToken = match[1];
-    var payload;
-    try {
-      payload = jwt.verify(accessToken, process.env.JWT_SECRET);
-    }
-    catch (err) {}
-    httpAssert(payload, 401, 'Invalid access token');
-
+    secure(this);
+    
     // default to PDF, but render in HTML, docx, and text if requested
     var format = FORMATS.pdf;
 
