@@ -49,6 +49,7 @@ app.use(router(app));
 require('./resources/root')(app);
 require('./resources/question')(app);
 require('./resources/personal_resume')(app);
+require('./resources/stackoverflow_resume')(app);
 
 // static content
 app.use(serve(__dirname + '/public/dist'));
