@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Twisted Stream Technologies</title>
 
-    <link rel="stylesheet" href="styles/styles.css" />
     <!-- bower:css -->
     <!-- endbower -->
+    <link rel="stylesheet" href="styles/styles.css" />
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   </head>
@@ -30,6 +30,78 @@
             <a href="http://twitter.com/twistedstream" target="_blank">Twitter</a>
             |
             <a href="https://github.com/twistedstream" target="_blank">GitHub</a>
+            |
+            <a data-toggle="collapse" href="#resume">Resume</a>
+
+            <div class="collapse" id="resume">
+              <div class="container">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="well">
+                      <p>
+                        <strong>Thanks for taking interest in my resume!</strong>
+                      </p>
+                      <p>
+                        In order to gain access to it, we're going to run <i>you</i> through a quick technical challenge.
+                        I'd just like to make sure you know a thing or two about coding as well before we connect :)
+                      </p>
+                      <p>
+                        First, start by getting the following (somewhat rediculous) JavaScript function to work:
+                      </p>
+
+                      <pre><code id="challenge-code" class="javascript"></code></pre>
+
+                      <div id="answer-group" class="form-group">
+                        <label id="answer-label" class="control-label" for="answer"></label>
+                        <textarea id="answer" class="form-control" rows="4" placeholder="Your code"></textarea>
+                      </div>
+                      <p>
+                        <button id="run" type="button" class="btn btn-primary">Run!</button>
+                      </p>
+
+                      <div id="token-block" hidden>
+                        <p>
+                          <strong>Nice work!</strong>
+                        </p>
+                        <p>
+                          And as a reward for your clever coding, you get this lovely <a href="http://jwt.io/" target="_blank">JSON Web Token</a>:
+                        </p>
+                        <pre><code id="access-token"></code></pre>
+
+                        <p>
+                          What good is this?  Well, you're going to need it in order to access the resume itself.
+                        </p>
+
+                        <h3>Personal Resume</h3>
+                        <p>
+                          If you want my standard personal resume, you'll need to use some HTTP client (ex: <a href="http://curl.haxx.se/" target="blank_">cURL</a>) to make an <strong>authenticated</strong> <code>GET</code> request to the following REST resource:
+                        </p>
+                        <p>
+                          <code id="personal-resume-resource"></code>
+                        </p>
+                        <p>
+                          By default, the resource will return a PDF document, but the following representations are supported via the <code>Accepts</code> header:
+                          <ul id="personal-resume-formats">
+                            <!-- <li><code></code>...</li> -->
+                          </ul>
+                        </p>
+
+                        <h3>StackOverflow Resume</h3>
+                        <p>
+                          If you'd like to see my resume on <a href="http://careers.stackoverflow.com/" target="_blank">StackOverflow Careers</a>, you'll also need to use an HTTP client to make an <strong>authenticated</strong> <code>GET</code> request to the following REST resource:
+                        </p>
+                        <p>
+                          <code id="stackoverflow-resume-resource"></code>
+                        </p>
+                        <p>
+                          If successful, the endpoint will respond with an <code>HTTP 302</code> redirect and provide the location of the actual resume URL.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <div>
+            </div>
           </p>
         </div>
       </div>

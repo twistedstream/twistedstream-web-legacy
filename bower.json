@@ -9,7 +9,8 @@
     "test"
   ],
   "dependencies": {
-    "bootstrap": "~3.1.1"
+    "bootstrap": "~3.1.1",
+    "highlightjs": "~8.4.0"
   },
   "overrides": {
     "bootstrap": {
@@ -26,6 +27,12 @@
       "main": [
         "dist/jquery.min.js",
         "dist/jquery.min.map"
+      ]
+    },
+    "highlightjs": {
+      "main": [
+        "./styles/monokai_sublime.css",
+        "./highlight.pack.js"
       ]
     }
   }
