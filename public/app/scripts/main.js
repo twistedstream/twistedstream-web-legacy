@@ -59,7 +59,8 @@
               $('#stackoverflow-resume-resource').text(window.location + 'api/stackoverflow_resume');
 
               $('#token-block').show();
-              $('html, body').animate({ scrollTop: $(document).height() }, 'slow');
+              // scroll down so user can see results
+              $('html, body').animate({ scrollTop: $('#token-block').offset().top }, 'slow');
             });
           });
         });
