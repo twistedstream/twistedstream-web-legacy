@@ -1,6 +1,10 @@
 (function () {
   'use strict';
 
+  function scrollTo (ele) {
+    $('html, body').animate({ scrollTop: ele.offset().top }, 'slow');
+  }
+
   $(function () {
     console.log('Web app has started!!!');
 
@@ -10,6 +14,8 @@
       hljs.initHighlighting();
 
       $('#resume').on('shown.bs.collapse', function () {
+        scrollTo($('#resume-well'));
+
         var answerTextarea = $('#answer');
         var runButton = $('#run');
 
@@ -56,7 +62,7 @@
 
               $('#token-block').show();
               // scroll down so user can see results
-              $('html, body').animate({ scrollTop: $('#token-block').offset().top }, 'slow');
+              scrollTo($('#token-block'));
             });
           });
         });
