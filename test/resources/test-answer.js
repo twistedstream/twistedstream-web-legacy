@@ -19,9 +19,7 @@ describe("API Answer (/answer) resource", function () {
         .expect(400)
         .end();
 
-      var body = response.body;
-      expect(body).to.have.property('message')
-        .and.match(/missing required field/i);
+      expect(response.text).to.match(/missing required field/i);
     });
 
     it("with incorrect code should return a 400 due to not passing tests", function *() {
@@ -33,9 +31,7 @@ describe("API Answer (/answer) resource", function () {
         .expect(400)
         .end();
 
-      var body = response.body;
-      expect(body).to.have.property('message')
-        .and.match(/your code didn't quite pass/i);
+      expect(response.text).to.match(/your code didn't quite pass/i);
     });
 
     it("with infinite loop code should return a 400 due to taking too long", function *() {

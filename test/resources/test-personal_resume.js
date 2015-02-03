@@ -38,9 +38,7 @@ describe("API Personal Resume (/personal_resume) resource", function () {
         .expect(401)
         .end();
 
-      var body = response.body;
-      expect(body).to.have.property('message')
-        .and.match(/missing Authorization request header/i);
+      expect(response.text).to.match(/missing Authorization request header/i);
     });
 
     it("with no Accept request header should return a PDF document by default", function *() {

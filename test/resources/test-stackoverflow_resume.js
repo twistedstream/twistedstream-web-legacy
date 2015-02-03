@@ -17,9 +17,7 @@ describe("API StackOverflow Resume (/stackoverflow_resume) resource", function (
         .expect(401)
         .end();
 
-      var body = response.body;
-      expect(body).to.have.property('message')
-        .and.match(/missing Authorization request header/i);
+      expect(response.text).to.match(/missing Authorization request header/i);
     });
 
     it("should return a 302 with a Location header containing the StackOverflow resume URL", function *() {

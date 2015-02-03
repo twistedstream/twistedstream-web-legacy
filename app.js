@@ -16,33 +16,19 @@ app.version = thisPackage.version;
 // logger
 app.use(logger());
 
-// default error catch
-app.use(function *(next) {
-	try {
-		yield next;
-	} catch (err) {
-		this.status = err.status || 500;
-
-		if (this.status < 500) {
-			this.body = {
-				message: err.message,
-				help_link: 'https://twitter.com/twistedstream'
-			};
-		} else {
-			var requestId = this.request.header['request-id'] || 'N/A';
-
-			this.body = {
-				message: "What'd you do?",
-				help_link: '/img/wyd.png',
-				error_id: requestId
-			};
-			this.app.emit('error', err, this);
-		}
-	}
-});
-
 // body parser
 app.use(bodyParser());
+
+// errors
+app.on('error', function (err) {
+	if (!err.status || err.status >= 500) {
+		var msg = err.stack || err.toString();
+
+		console.error();
+		console.error(msg.replace(/^/gm, '  '));
+		console.error();
+	}
+});
 
 // routes
 app.use(router(app));
