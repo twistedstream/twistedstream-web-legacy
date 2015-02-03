@@ -33,23 +33,24 @@ var FORMATS = {
 module.exports = function (app) {
   app.get('/api/personal_resume', function *() {
     secure(this);
-    
-    // default to PDF, but render in HTML, docx, and text if requested
-    var format = FORMATS.pdf;
 
-    // check for Accept header first otherwise this.accepts() will default to HTML
-    if (this.request.get('Accept')) {
-      switch (this.accepts(FORMATS.html.contentType, FORMATS.doc.contentType, FORMATS.text.contentType)) {
-        case FORMATS.html.contentType:
-          format = FORMATS.html;
-          break;
-        case FORMATS.doc.contentType:
-          format = FORMATS.doc;
-          break;
-        case FORMATS.text.contentType:
-          format = FORMATS.text;
-          break;
-      }
+    var format;
+    // default to PDF format
+    switch (this.accepts(FORMATS.pdf.contentType, FORMATS.html.contentType, FORMATS.doc.contentType, FORMATS.text.contentType)) {
+      case FORMATS.pdf.contentType:
+        format = FORMATS.pdf;
+        break;
+      case FORMATS.html.contentType:
+        format = FORMATS.html;
+        break;
+      case FORMATS.doc.contentType:
+        format = FORMATS.doc;
+        break;
+      case FORMATS.text.contentType:
+        format = FORMATS.text;
+        break;
+      default:
+        format = FORMATS.pdf;
     }
 
     this.response.type = format.contentType;

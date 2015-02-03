@@ -57,6 +57,21 @@ describe("API Personal Resume (/personal_resume) resource", function () {
       scope.done();
     });
 
+    it("with a default Accept request header should return a PDF document by default", function *() {
+      var scope = mockBackendResumeRequest('pdf', 'dummy-reply.pdf');
+
+      var response = yield request
+        .get('/api/personal_resume')
+        .set('Authorization', 'Bearer ' + helpers.createAccessToken())
+        .set('Accept', '*/*')
+        .expect(200)
+        .expect('Content-Type', /application\/pdf/)
+        .end();
+
+      expect(response.text).to.match(/^%PDF\-/);
+      scope.done();
+    });
+
     it("with a PDF Accept request header should return a PDF document", function *() {
       var scope = mockBackendResumeRequest('pdf', 'dummy-reply.pdf');
 
