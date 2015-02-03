@@ -13,8 +13,16 @@
         var answerTextarea = $('#answer');
         answerTextarea.focus();
 
-        // run workflow
         var runButton = $('#run');
+
+        // only enable run button if answer isn't empty
+        answerTextarea.bind('input propertychange', function () {
+          console.log('CHANGE');
+
+          runButton.prop('disabled', $(this).val() === '');
+        });
+
+        // run workflow
         runButton.click(function () {
           // disable controls while checking answer
           answerTextarea.prop('disabled', true);
