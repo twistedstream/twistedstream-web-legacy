@@ -52,4 +52,8 @@ module.exports = function (app) {
     var exportUrl = process.env.GOOGLE_DOCS_RESUME_BASE_EXPORT_URL + '&format=' + format.ext;
     this.body = request.get(exportUrl);
   });
+
+  app.get('/api/personal_resume/formats', function *() {
+    this.body = FORMATS;
+  });
 };

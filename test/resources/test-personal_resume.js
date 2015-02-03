@@ -118,3 +118,18 @@ describe("API Personal Resume (/personal_resume) resource", function () {
     });
   });
 });
+
+describe("API Personal Resume Formats (/personal_resume/formats) resource", function () {
+  describe("GET", function () {
+    it("should return the expected formats", function *() {
+      var response = yield request
+        .get('/api/personal_resume/formats')
+        .expect(200)
+        .end();
+
+      var body = response.body;
+      // expect that we at least get PDF
+      expect(body).to.have.property('pdf');
+    });
+  });
+});
