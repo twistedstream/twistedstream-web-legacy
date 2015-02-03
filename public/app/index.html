@@ -60,9 +60,7 @@
                       </p>
 
                       <div id="token-block" hidden>
-                        <p>
-                          <strong>Nice work!</strong>
-                        </p>
+                        <h2>Nice work!</h2>
                         <p>
                           And as a reward for your clever coding, you get this lovely <a href="http://jwt.io/" target="_blank">JSON Web Token</a>:
                         </p>
@@ -77,7 +75,7 @@
                           If you want my standard personal resume, you'll need to use some HTTP client (ex: <a href="http://curl.haxx.se/" target="blank_">cURL</a>) to make an <strong>authenticated</strong> <code>GET</code> request to the following REST resource:
                         </p>
                         <p>
-                          <code id="personal-resume-resource"></code>
+                          <pre><code id="personal-resume-resource"></code></pre>
                         </p>
                         <p>
                           By default, the resource will return a PDF document, but the following representations are supported via the <code>Accepts</code> header:
@@ -90,7 +88,7 @@
                           If you'd like to see my resume on <a href="http://careers.stackoverflow.com/" target="_blank">StackOverflow Careers</a>, you'll also need to use an HTTP client to make an <strong>authenticated</strong> <code>GET</code> request to the following REST resource:
                         </p>
                         <p>
-                          <code id="stackoverflow-resume-resource"></code>
+                          <pre><code id="stackoverflow-resume-resource"></code></pre>
                         </p>
                         <p>
                           If successful, the endpoint will respond with an <code>HTTP 302</code> redirect and provide the location of the actual resume URL.
