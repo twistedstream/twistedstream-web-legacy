@@ -10,19 +10,23 @@ assert(process.env.JWT_SECRET, 'Missing required environment variable: JWT_SECRE
 var FORMATS = {
   pdf: {
     ext: 'pdf',
-    contentType: 'application/pdf'
+    contentType: 'application/pdf',
+    description: 'PDF Document'
   },
   html: {
     ext: 'html',
-    contentType: 'text/html'
+    contentType: 'text/html',
+    description: 'HTML Document'
   },
   doc: {
     ext: 'docx',
-    contentType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    contentType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    description: 'Word Document'
   },
   text: {
     ext: 'txt',
-    contentType: 'text/plain'
+    contentType: 'text/plain',
+    description: 'Text File'
   }
 };
 
