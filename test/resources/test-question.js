@@ -35,7 +35,21 @@ describe("API Question (/question) resource", function () {
 
       var body = response.body;
       expect(body).to.have.property('message')
-        .and.match(/did not pass/i);
+        .and.match(/your code didn't quite pass/i);
+    });
+
+    it("with infinite loop code should return a 400 due to taking too long", function *() {
+      var response = yield request
+        .post('/api/question')
+        .send({
+          code: 'while (true) {}'
+        })
+        .expect(400)
+        .end();
+
+      var body = response.body;
+      expect(body).to.have.property('message')
+        .and.match(/your code took too long/i);
     });
 
     it("with satisfying code should return a 200 with a valid access token", function *() {

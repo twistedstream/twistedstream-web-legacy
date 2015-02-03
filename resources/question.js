@@ -31,13 +31,13 @@ module.exports = function (app) {
 
       switch (result.reason) {
         case 'incorrect':
-          message = 'The provided code did not pass all evaluation tests.';
+          message = "Hmm, your code didn't quite pass all evaluation tests.";
           break;
         case 'timeout':
-          message = 'The provided code took too long to execute.';
+          message = 'Sorry, your code took too long to execute.';
           break;
         default:
-          message = 'result.reason';
+          message = result.reason;
       }
       this.body = {
         message: message
