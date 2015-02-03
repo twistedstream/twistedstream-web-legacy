@@ -10,11 +10,11 @@ var helpers = require('../helpers');
 var app = require('../../app');
 var request = require('co-supertest').agent(app.callback());
 
-describe("API Question (/question) resource", function () {
+describe("API Answer (/answer) resource", function () {
   describe("POST", function () {
     it("with no code should return a 400 due to a missing field", function *() {
       var response = yield request
-        .post('/api/question')
+        .post('/api/answer')
         .send({})
         .expect(400)
         .end();
@@ -26,7 +26,7 @@ describe("API Question (/question) resource", function () {
 
     it("with incorrect code should return a 400 due to not passing tests", function *() {
       var response = yield request
-        .post('/api/question')
+        .post('/api/answer')
         .send({
           code: 'return 42;'
         })
@@ -40,7 +40,7 @@ describe("API Question (/question) resource", function () {
 
     it("with infinite loop code should return a 400 due to taking too long", function *() {
       var response = yield request
-        .post('/api/question')
+        .post('/api/answer')
         .send({
           code: 'while (true) {}'
         })
@@ -54,7 +54,7 @@ describe("API Question (/question) resource", function () {
 
     it("with satisfying code should return a 200 with a valid access token", function *() {
       var response = yield request
-        .post('/api/question')
+        .post('/api/answer')
         .send({
           code: helpers.passingCodeExpression
         })

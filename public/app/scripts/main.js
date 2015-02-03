@@ -32,7 +32,7 @@
 
           $.ajax({
             type: 'POST',
-            url: '/api/question',
+            url: '/api/answer',
             data: JSON.stringify({ code: answerTextarea.val() }),
             contentType: 'application/json'
           }).fail(function (err) {

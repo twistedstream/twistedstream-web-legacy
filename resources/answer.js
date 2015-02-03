@@ -8,7 +8,7 @@ var code = require('../lib/evaluator');
 assert(process.env.JWT_SECRET, 'Missing required environment variable: JWT_SECRET');
 
 module.exports = function (app) {
-  app.post('/api/question', function *() {
+  app.post('/api/answer', function *() {
     httpAssert(this.request.body.code, 400, 'Missing required field: code');
 
     var result = yield code.test(this.request.body.code);

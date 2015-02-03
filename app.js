@@ -47,7 +47,7 @@ app.use(bodyParser());
 // routes
 app.use(router(app));
 require('./resources/root')(app);
-require('./resources/question')(app);
+require('./resources/answer')(app);
 require('./resources/personal_resume')(app);
 require('./resources/stackoverflow_resume')(app);
 require('./resources/challenge')(app);
