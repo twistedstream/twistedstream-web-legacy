@@ -185,16 +185,13 @@ gulp.task('dev-variables', function () {
 	isDev = true;
 });
 
-// changes to source should trigger associated build tasks
-// which will in turn cause dist to change and the dev web server to reload
 gulp.task('watch', ['dev-variables', 'backend', 'frontend'], function (cb) {
-	gulp.watch([bases.app + 'index.html', bases.app + 'components'], ['deps']);
-	gulp.watch(bases.app + 'images', ['imagemin']);
-	gulp.watch(bases.app + 'scripts', ['scripts']);
-	gulp.watch(bases.app + 'styles.less', ['less']);
-	gulp.watch(paths.extras.map(function (extra) {
-		return bases.app + extra;
-	}), ['extras']);
+	gulp.watch(paths.html, {cwd: bases.app}, ['deps']);
+	gulp.watch('components', {cwd: bases.app}, ['deps']);
+	gulp.watch(paths.images, {cwd: bases.app}, ['imagemin']);
+	gulp.watch(paths.scripts, {cwd: bases.app}, ['scripts']);
+	gulp.watch('styles.less', {cwd: bases.app}, ['less']);
+	gulp.watch(paths.extras, {cwd: bases.app}, ['extras']);
 
 	cb();
 });
@@ -202,7 +199,8 @@ gulp.task('watch', ['dev-variables', 'backend', 'frontend'], function (cb) {
 // start a web server that serves up the backend AND restarts on any changes, including frontend
 gulp.task('dev', ['watch'], function () {
 	return nodemon({
-		ignore: ['node_modules'],
+		ext: 'js json',
+		ignore: [bases.app, bases.dist, 'node_modules'],
 		nodeArgs: '--harmony'
 	}).on('change', ['backend']);
 });
