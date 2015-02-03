@@ -11,14 +11,10 @@
 
       $('#resume').on('shown.bs.collapse', function () {
         var answerTextarea = $('#answer');
-        answerTextarea.focus();
-
         var runButton = $('#run');
 
         // only enable run button if answer isn't empty
         answerTextarea.bind('input propertychange', function () {
-          console.log('CHANGE');
-
           runButton.prop('disabled', $(this).val() === '');
         });
 
