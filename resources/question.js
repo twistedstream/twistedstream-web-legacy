@@ -21,7 +21,7 @@ module.exports = function (app) {
             message: 'I got in!'
           },
           process.env.JWT_SECRET, {
-            expiresInMinutes: 60,
+            expiresInMinutes: 15,
             subject: 'flynn'
           })
       };
