@@ -36,8 +36,9 @@ module.exports = function (app) {
         case 'timeout':
           message = 'Sorry, your code took too long to execute.';
           break;
-        default:
-          message = result.reason;
+        case 'error':
+          message = "Oops, looks there's a syntax error with your code: " + result.message;
+          break;
       }
       this.body = {
         message: message

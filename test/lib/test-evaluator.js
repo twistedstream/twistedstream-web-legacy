@@ -38,7 +38,8 @@ describe("lib/evaluator", function () {
     var response = yield target.test(code);
 
     expect(response).to.have.property('passed', false);
-    expect(response).to.have.property('reason', 'incorrect');
+    expect(response).to.have.property('reason', 'error');
+    expect(response).to.have.property('message', 'Unexpected identifier');
   });
 
   it("should not pass if the provided code throws an error", function *() {
