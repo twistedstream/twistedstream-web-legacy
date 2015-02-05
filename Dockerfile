@@ -1,1 +1,1 @@
-FROM twistedstream/nodejs-es6-bower-gulp-runtime
+FROM twistedstream/iojs-bower-gulp-runtime

@@ -6,7 +6,7 @@ The source code for [twistedstream.com](http://www.twistedstream.com).
 
 This web app demonstrates the use of:
 
-* [Koa.js](http://koajs.com/) on Node v.0.11 in the backend
+* [Koa.js](http://koajs.com/) on [io.js](https://iojs.org/) in the backend
 * [jQuery](http://jquery.com/), [Twitter Bootstrap](https://github.com/twbs/bootstrap), and [Bower](http://bower.io/) in the frontend
 * [ES6 generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*)
 * [ES6 Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
@@ -48,3 +48,5 @@ sh run-docker-dev.sh my-jwt-secret \
     http://any-url-that-returns-a-pdf.com \
     http://careers.stackoverflow.com/some-user
 ```
+
+The app will automatically open up in your default browser.

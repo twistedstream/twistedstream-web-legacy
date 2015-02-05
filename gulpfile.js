@@ -52,7 +52,6 @@ gulp.task('jshint', function() {
 gulp.task('backend-tests', function() {
 	return gulp.src(['test/**/test-*.js'], {read: false})
 		.pipe(mocha({
-			harmony: true,
 			reporter: 'spec',
 			ui: 'bdd',
 			timeout: 2000,
@@ -201,6 +200,5 @@ gulp.task('dev', ['watch'], function () {
 	return nodemon({
 		ext: 'js json',
 		ignore: [bases.app, bases.dist, 'node_modules'],
-		nodeArgs: '--harmony'
 	}).on('change', ['backend']);
 });
