@@ -15,6 +15,7 @@ var less = require('gulp-less');
 var nodemon = require('gulp-nodemon');
 var gutil = require('gulp-util');
 var dotenv = require('dotenv');
+var spawn = require('child_process').spawn;
 
 // PATHS
 
@@ -197,8 +198,25 @@ gulp.task('watch', ['dev-variables', 'backend', 'frontend'], function (cb) {
 
 // start a web server that serves up the backend AND restarts on any changes, including frontend
 gulp.task('dev', ['watch'], function () {
+	var bunyan;
+
 	return nodemon({
 		ext: 'js json',
 		ignore: [bases.app, bases.dist, 'node_modules'],
+		stdout:   false,
+		readable: false
+	}).on('readable', function() {
+		// free memory
+		if (bunyan) { bunyan.kill(); }
+
+		bunyan = spawn('./node_modules/.bin/bunyan', [
+			'--output', 'short',
+			'--color'
+		]);
+
+		bunyan.stdout.pipe(process.stdout);
+		bunyan.stderr.pipe(process.stderr);
+		this.stdout.pipe(bunyan.stdin);
+		this.stderr.pipe(bunyan.stdin);
 	}).on('change', ['backend']);
 });
