@@ -1,7 +1,6 @@
 'use strict';
 
 var koa = require('koa');
-var koaBunyanLogger = require('koa-bunyan-logger');
 var bodyParser = require('koa-bodyparser');
 var router = require('koa-router');
 var serve = require('koa-static');
@@ -13,10 +12,8 @@ var app = koa();
 app.name = thisPackage.name;
 app.version = thisPackage.version;
 
-// logger
-app.use(koaBunyanLogger());
-app.use(koaBunyanLogger.requestIdContext());
-app.use(koaBunyanLogger.requestLogger());
+// logging
+require('./lib/logging')(app);
 
 // body parser
 app.use(bodyParser());

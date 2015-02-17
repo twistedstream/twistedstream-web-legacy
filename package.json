@@ -22,14 +22,16 @@
   "homepage": "http://www.twistedstream.com",
   "dependencies": {
     "bunyan": "^1.3.3",
+    "chalk": "^0.5.1",
     "co-body": "^1.0.0",
     "http-assert": "^1.1.0",
     "jsonwebtoken": "^3.2.2",
     "koa": "^0.13.0",
     "koa-bodyparser": "^1.3.0",
-    "koa-bunyan-logger": "^1.2.0",
     "koa-router": "^3.6.0",
     "koa-static": "^1.4.8",
+    "metric-log": "^1.0.1",
+    "node-uuid": "^1.4.2",
     "request": "^2.51.0",
     "sandbox": "https://github.com/twistedstream/sandbox/archive/v0.8.7.tar.gz"
   },
