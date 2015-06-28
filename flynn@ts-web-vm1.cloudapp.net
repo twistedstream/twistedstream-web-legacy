@@ -1,0 +1,15 @@
+# Usage: sh ./logs.sh [SEARCH_STRING]
+# If no SEARCH_STRING, the script will output the 
+# first line of each Bunyan log entry. If there is 
+# a SEARCH_STRING, the script will find that line
+# plus display 25 additional lines, which is 
+# useful for looking at the details of a specifc 
+# request ID.
+
+if [ -z "$1" ]; then
+  GREP="grep '^[0-9]\{2\}\:[0-9]\{2\}\:[0-9]\{2\}\.[0-9]\{3\}Z\s'"
+else
+  GREP="grep -A 25 $1"
+fi
+
+docker logs $(docker ps -q) | eval $GREP
