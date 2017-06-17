@@ -1,7 +1,5 @@
 # TwistedStream Web App
 
-[ ![Codeship Status for twistedstream/twistedstream-web](https://codeship.com/projects/09130800-8429-0132-1ca0-4a95a2d7e957/status?branch=master)](https://codeship.com/projects/58330)
-
 The source code for [twistedstream.com](http://www.twistedstream.com).
 
 This web app demonstrates the use of:
