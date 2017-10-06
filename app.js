@@ -4,6 +4,8 @@ var koa = require('koa');
 var bodyParser = require('koa-bodyparser');
 var router = require('koa-router');
 var serve = require('koa-static');
+var dotenv = require('dotenv');
+dotenv.load();
 
 var thisPackage = require('./package');
 
