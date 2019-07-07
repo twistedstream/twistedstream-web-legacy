@@ -11,7 +11,6 @@ This web app demonstrates the use of:
 * [Mocha](http://mochajs.org/) as the test runner
 * [Gulp](http://gulpjs.com/) as the build engine
 * [Nodemon](https://github.com/remy/nodemon) as the local dev server
-* [Docker](https://www.docker.com/) to run the app in a container
 
 ## Usage
 
@@ -36,21 +35,3 @@ gulp dev
 ```
 
 The app can then be accessed at: [http://localhost:5000/](http://localhost:5000/)
-
-To execute the app in a local Docker container (running in [boot2docker](http://boot2docker.io/)):
-
-```bash
-# if boot2docker is not running
-boot2docker start
-
-# if the shell hasn't been initialized
-$(boot2docker shellinit)
-
-# build the image, run the container (with configuration), and launch a browser
-sh run-docker-dev.sh my-jwt-secret \
-    1000 \
-    http://any-url-that-returns-a-pdf.com \
-    http://careers.stackoverflow.com/some-user
-```
-
-The app will automatically open up in your default browser.
