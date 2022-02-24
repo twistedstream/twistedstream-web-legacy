@@ -50,20 +50,12 @@
 
             $('#access-token').text(data.access_token);
 
-            // get personal resume formats and fill in other dynamic data
-            $.getJSON('/api/personal_resume/formats').done(function (data) {
-              $.each(data, function (i, format) {
-                var li = '<li>' + format.description + ': <code>' + format.contentType + '</code></li>';
-                $('#personal-resume-formats').append(li);
-              });
+            $('#personal-resume-resource').text(window.location + 'api/personal_resume');
+            $('#stackoverflow-resume-resource').text(window.location + 'api/stackoverflow_resume');
 
-              $('#personal-resume-resource').text(window.location + 'api/personal_resume');
-              $('#stackoverflow-resume-resource').text(window.location + 'api/stackoverflow_resume');
-
-              $('#token-block').show();
-              // scroll down so user can see results
-              scrollTo($('#token-block'));
-            });
+            $('#token-block').show();
+            // scroll down so user can see results
+            scrollTo($('#token-block'));
           });
         });
       });

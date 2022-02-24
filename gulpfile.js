@@ -59,7 +59,7 @@ gulp.task('backend-tests', function() {
 			env: {
 				JWT_SECRET: 'I am a fake mountain.',
 				SANDBOX_TIMEOUT: 1000,
-				GOOGLE_DOCS_RESUME_BASE_EXPORT_URL: 'http://resume.url/?id=foo',
+				PERSONAL_RESUME_PDF_URL: 'http://resume.url/?id=foo',
 				STACK_OVERFLOW_CAREERS_URL: 'http://stack.overflow.careers.url'
 			}
 		})).on('error', function () {

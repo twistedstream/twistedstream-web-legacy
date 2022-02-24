@@ -27,7 +27,7 @@ bower install
 # if you haven't created a .env file yet
 echo JWT_SECRET="I am a fake mountain." >> .env
 echo SANDBOX_TIMEOUT=1000 >> .env
-echo GOOGLE_DOCS_RESUME_BASE_EXPORT_URL="http://resume.url/?id=foo" >> .env
+echo PERSONAL_RESUME_PDF_URL="http://resume.url/?id=foo" >> .env
 echo STACK_OVERFLOW_CAREERS_URL="http://stack.overflow.careers.url" >> .env
 
 # run the dev server
