@@ -45,23 +45,23 @@
     "co-mocha": "^1.1.2",
     "co-supertest": "0.0.10",
     "del": "^1.2.0",
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.2",
     "gulp-concat": "^2.6.0",
     "gulp-imagemin": "^2.3.0",
-    "gulp-jshint": "^1.11.0",
+    "gulp-jshint": "^2.1.0",
     "gulp-less": "^3.0.3",
     "gulp-nodemon": "^2.0.3",
-    "gulp-spawn-mocha": "^2.2.1",
+    "gulp-spawn-mocha": "^6.0.0",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.6",
     "jshint-stylish": "^2.0.1",
     "main-bower-files": "^2.8.2",
-    "mocha": "^2.2.5",
+    "mocha": "^10.1.0",
     "monk": "^1.0.1",
     "nock": "^2.6.0",
     "should": "^7.0.1",
     "supertest": "^1.0.1",
     "vinyl-paths": "^1.0.0",
-    "wiredep": "^2.2.2"
+    "wiredep": "^4.0.0"
   }
 }
