@@ -28,7 +28,7 @@
     "co-body": "^1.2.0",
     "dotenv": "^1.2.0",
     "http-assert": "^1.1.1",
-    "jsonwebtoken": "^5.0.2",
+    "jsonwebtoken": "^9.0.0",
     "koa": "^0.13.0",
     "koa-bodyparser": "^1.6.0",
     "koa-router": "^3.8.0",
